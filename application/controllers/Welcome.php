@@ -17,9 +17,20 @@ class Welcome extends CI_Controller {
 	 * So any other public methods not prefixed with an underscore will
 	 * map to /index.php/welcome/<method_name>
 	 * @see https://codeigniter.com/user_guide/general/urls.html
+	 *
 	 */
+
+	function __construct() {
+		parent::__construct();
+		$this->load->model("test_m");
+	}
+
 	public function index()
 	{
+		$testList = $this->test_m->getTestList();
+		echo "<pre>";
+		print_r($testList);
+
 		$this->load->view('welcome_message');
 	}
 }
